@@ -1,0 +1,28 @@
+{
+  "development": {
+    "driver": "mysql",
+    "user": "root",
+    "host": "localhost",
+    "port": 3306,
+    "password": "",
+    "database": "exceptional_manage_dev"
+  },
+
+  "test": {
+    "driver": "mysql",
+    "user": "root",
+    "host": "localhost",
+    "port": 3306,
+    "password": "",
+    "database": "exceptional_manage_test"
+  },
+
+  "production": {
+    "driver": "mysql",
+    "user": "root",
+    "host": "localhost",
+    "port": 3306,
+    "password": "",
+    "database": "exceptional_manage_prod"
+  }
+}
