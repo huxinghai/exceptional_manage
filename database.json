@@ -1,11 +1,16 @@
 {
   "development": {
-    "driver": "mysql",
-    "user": "root",
-    "host": "localhost",
-    "port": 3306,
-    "password": "",
-    "database": "exceptional_manage_dev"
+    "database" : "exceptional_manage_dev",
+    "protocol" : "mysql",
+    "host"     : "127.0.0.1",
+    "port"     : 3306,
+    "user"     : "root",
+    "password" : "",
+    "query"    : {
+      "pool"     : true,
+      "debug"    : true,
+      "strdates" : true
+    }
   },
 
   "test": {

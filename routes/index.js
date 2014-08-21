@@ -4,7 +4,13 @@ var zlib = require('zlib');
 
 /* GET home page. */
 router.get('/', function(req, res) {  
-  res.render('index', { title: "中国我爱你"});  
+  req.models.Exceptional.all(function(err, results){
+    var options = {results: results, error: null}    
+    if(err)
+      options.error = err
+    
+    res.render('index', options); 
+  })   
 });
 
 module.exports = router;

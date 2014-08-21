@@ -6,15 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var getRawBody = require('raw-body');
 var typer      = require('media-typer');
-var connection  = require('express-myconnection'); 
-var mysql = require('mysql');
-var database_config = require('./database.json');
+var init_db    = require('./init_database');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
 
 var app = express();
+
+init_db.loadORM(app)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,9 +28,9 @@ app.use(function (req, res, next) {
   len = req.headers['content-length']
   if(type && len){
     getRawBody(req, {
-      length: req.headers['content-length'],
+      length: len,
       limit: '20mb',
-      encoding: typer.parse(req.headers['content-type']).parameters.charset
+      encoding: typer.parse(type).parameters.charset
     }, function (err, string) {
       if (err)
         return next(err)
@@ -43,11 +43,11 @@ app.use(function (req, res, next) {
   }
 })
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+//app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(
-  connection(mysql, database_config[app.get('env')], 'request')
-)
+// app.use(
+//   connection(mysql, database_config[app.get('env')], 'request')
+// )
 
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));

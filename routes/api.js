@@ -2,15 +2,18 @@ var express = require('express');
 var router = express.Router();
 var zlib = require('zlib');
 
-router.post("/errors", function(req, res){  
-  console.log(req.text)  
-  console.log(req.body) 
+router.post("/errors", function(req, res){ 
+
   zlib.inflate(req.text, function(error, results){    
     if(results)
-      console.log(results.toString()) 
-  })    
-
-  res.json({test: 111})
+      var info = JSON.parse(results.toString());
+      info.created_at = new Date();
+      req.models.Exceptional.create(info, function(err, items){
+        console.log(err)
+        console.log(items)
+      })
+  })  
+  res.json({})  
 })
 
 module.exports = router;
