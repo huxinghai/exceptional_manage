@@ -16,16 +16,21 @@
           <thead>
             <tr>
               <th>标题</th>
-              <th>内容</th>
               <th>时间</th>
             </tr>
           </thead>
           <tbody>
             <% results.forEach(function(item){%>
             <tr>
-              <td><%=item.title %></td>
-              <td><%=item.content %></td>
-              <td><%=item.created_at %></td>
+              <td>
+                <div>
+                  <%=item.title %>
+                </div>
+                <div>
+                  <%=item.url %>
+                </div>
+              </td>
+              <td><%=item.created_at_for("yyyy-mm-dd h:MM:ss") %></td>
             </tr>
             <% })  %>
           </tbody>

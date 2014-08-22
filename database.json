@@ -1,5 +1,6 @@
 {
   "development": {
+    "driver": "mysql",
     "database" : "exceptional_manage_dev",
     "protocol" : "mysql",
     "host"     : "127.0.0.1",

@@ -4,11 +4,16 @@ var type = dbm.dataType;
 exports.up = function(db, callback) {
   db.createTable('exceptional', {
     id: { type: 'int', primaryKey: true, autoIncrement: true },
-    title: 'string',
-    content: 'string',
+    title: 'text',
+    content: 'text',
     url: 'string',
-    header: 'string',
-    created_at: 'datetime'
+    header: 'text',
+    remote_ip: 'string',
+    session: 'text',
+    parameters: 'string', 
+    environment: 'text',
+    created_at: 'datetime',
+    occurred_at: 'datetime'
   }, callback);
 };
 
