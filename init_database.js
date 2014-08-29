@@ -35,6 +35,18 @@ var _loadORM = function(app){
           validations: {
             title: orm.validators.rangeLength(1, undefined, "不能为空！")
           }
+        }),
+        "Authentication": db.define("authentication", {
+          id            : { type: 'serial', key: true },
+          access_token  : { type: 'text' },
+          provider_name : { type: 'text' },
+          describe      : { type: 'text' },
+          created_at    : { type: 'date'}
+        }, {
+          validations: {
+            access_token: [orm.validations.notEmptyString("不能为空!"), orm.validations.unique("token 不能重复")],
+            provider_name: [orm.validations.notEmptyString("不能为空!"), orm.validations.unique("名称不能重复")]
+          }
         })
       }
       next()

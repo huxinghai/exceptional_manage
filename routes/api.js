@@ -46,7 +46,7 @@ router.post("/errors", function(req, res){
       req.models.Exceptional.create(info, function(err, items){
         if(err){
           console.error(err)
-          res.json({error: err})           
+          res.status(403).json({error: err})           
         }else{
           console.log(items)  
           res.json({})
