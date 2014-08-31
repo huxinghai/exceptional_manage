@@ -1,19 +1,25 @@
-body {
-  /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-a {
-  color: #00b7ff;
+.notice{
+  display: none;
 }
 
-
-.authentication_wrap{
-  width: 450px;
-  margin: 50px auto 0px auto;
+.create_auth{
+  width: 403px;
+  display: none;
 }
 
-.authentication_wrap textarea{
-  width: 100%;
-  height: 180px;
+.create_auth .provider_name{
+  width: 300px;
+}
+
+.create_auth .describe{
   resize: vertical;
+  height: 132px;
+}
+
+.authentication_wrap .topbar{
+  margin-bottom: 5px;
+}
+
+.authentication_wrap .btn-cancel{
+  margin-left: 10px;
 }

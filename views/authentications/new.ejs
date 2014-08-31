@@ -1,16 +1,44 @@
 <% include ../head %>
+  <div class='notice alert alert-error'></div>
   <div class='authentication_wrap'>
-    <form class="form" action="/authentications/create">
-      <div class="form-group">
-        <label>项目名称</label>
-        <input type="text" class="form-control" name='auth[provider_name]' placeholder="项目名称" />
-      </div>
-      <div class="form-group">
-        <label>描述</label>
-        <textarea class="form-control" name='auth[describe]' ></textarea>
-      </div>
-      <button type="submit" class="btn btn-default">确认</button>
-    </form>
+    <div class='topbar'>
+      <input type='button' class='btn btn-primary btn-new' value="添加" />
+    </div>    
+    <div>
+      <form class="form create_auth" action="/authentications/create">
+        <div class="form-group">
+          <label>项目名称</label>
+          <input type="text" class="form-control provider_name" name='auth[provider_name]' placeholder="项目名称" />
+        </div>
+        <div class="form-group">
+          <label>描述</label>
+          <textarea class="form-control describe" name='auth[describe]' ></textarea>
+        </div>
+        <button type="submit" class="btn btn-default btn-primary btn-confirm">确认</button>
+        <input type='button' class='btn btn-default btn-cancel' value="取消" />
+      </form>    
+    </div>
+    <br />
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>名称</th>
+            <th>token</th>
+            <th>描述</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% list.forEach(function(item){ %>
+            <tr>
+              <td><%=item.provider_name %></td>
+              <td><%=item.access_token %></td>
+              <td><%=item.describe %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </div>
 <% include ../foot %>
 <script type='text/javascript'>

@@ -25,7 +25,7 @@ var _loadORM = function(app){
           parameters : { type: "text" }, 
           environment: { type: "text" },
           occurred_at: { type: "date" },
-          created_at : { type: "date" }
+          created_at : { type: "date", time: true }
         }, {
           methods: {
             created_at_for: function(str){
@@ -41,11 +41,11 @@ var _loadORM = function(app){
           access_token  : { type: 'text' },
           provider_name : { type: 'text' },
           describe      : { type: 'text' },
-          created_at    : { type: 'date'}
+          created_at    : { type: 'date', time: true}
         }, {
           validations: {
-            access_token: [orm.validations.notEmptyString("不能为空!"), orm.validations.unique("token 不能重复")],
-            provider_name: [orm.validations.notEmptyString("不能为空!"), orm.validations.unique("名称不能重复")]
+            access_token: [orm.validators.rangeLength(1, undefined, "不能为空!"), orm.validators.unique("token 不能重复")],
+            provider_name: [orm.validators.rangeLength(1, undefined, "不能为空!"), orm.validators.unique("名称不能重复")]
           }
         })
       }

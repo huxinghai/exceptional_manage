@@ -23,32 +23,29 @@ app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(logger('dev'));
-app.use(function (req, res, next) {
+// app.use(function (req, res, next) {
   
-  type = req.headers['content-type']
-  len = req.headers['content-length']
-  if(type && len){
-    getRawBody(req, {
-      length: len,
-      limit: '20mb',
-      encoding: typer.parse(type).parameters.charset
-    }, function (err, string) {
-      if (err)
-        return next(err)
+//   type = req.headers['content-type']
+//   len = req.headers['content-length']
+//   if(type && len){
+//     getRawBody(req, {
+//       length: len,
+//       limit: '20mb',
+//       encoding: typer.parse(type).parameters.charset
+//     }, function (err, string) {
+//       if (err)
+//         return next(err)
 
-      req.text = string
-      next()
-    })
-  }else{
-    next()
-  }
-})
+//       req.text = string
+//       next()
+//     })
+//   }else{
+//     next()
+//   }
+// })
 app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-// app.use(
-//   connection(mysql, database_config[app.get('env')], 'request')
-// )
 
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
