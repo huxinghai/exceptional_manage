@@ -39,21 +39,33 @@ var convert_format = function(info){
 }
 
 router.post("/errors", function(req, res){ 
-
-  zlib.inflate(req.text, function(error, results){    
-    if(results){
-      var info = convert_format(JSON.parse(results.toString()));      
-      req.models.Exceptional.create(info, function(err, items){
-        if(err){
-          console.error(err)
-          res.status(403).json({error: err})           
-        }else{
-          console.log(items)  
-          res.json({})
-        }
-      })
+  console.log(req.query.api_key)
+  req.models.Authentication.find({access_token: req.query.api_key}, function(error, results){
+    if(error){
+      console.error(error)
+      res.status(403).json({error: error})
+    }else{
+      if(results.length > 0){
+        zlib.inflate(req.text, function(error, results){    
+          if(results){
+            var info = convert_format(JSON.parse(results.toString()));      
+            req.models.Exceptional.create(info, function(err, items){
+              if(err){
+                console.error(err)
+                res.status(403).json({error: err})           
+              }else{
+                console.log(items)  
+                res.json({})
+              }
+            })
+          }
+        })
+      }else{
+        res.status(403).json({error: 'invalid app key'}) 
+      } 
     }
-  })  
+
+  }) 
    
 })
 

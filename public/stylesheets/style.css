@@ -5,6 +5,7 @@
 .create_auth{
   width: 403px;
   display: none;
+  padding-bottom: 5px;
 }
 
 .create_auth .provider_name{
@@ -23,3 +24,4 @@
 .authentication_wrap .btn-cancel{
   margin-left: 10px;
 }
+

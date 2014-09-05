@@ -5,11 +5,10 @@ var crypto = require('crypto');
 
 
 router.get('/new', function(req, res) {
-  req.models.Authentication.all(function(err, results){
+  req.models.Authentication.all(["created_at", "Z"], function(err, results){
     if(err){
       console.error(err)      
     }
-
     res.render('authentications/new', {list: results});
   })   
 });
@@ -23,7 +22,7 @@ router.post("/create", function(req, res){
     if(err){
       res.status(403).json({error: err})
     }else{
-      res.json({})
+      res.json(results)
     }
   })
 })

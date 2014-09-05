@@ -15,10 +15,20 @@ $(function(){
       type: "post",
       dataType: "json",
       data: $form.serialize(),
-      success: function(xhr){
+      success: function(items){
         $("notice").hide();
         btn_show();
         $form[0].reset();
+
+        for(var i=0;i<items.length; i++){
+          var str = "<tr>"
+            str += "<td>"+ items[i].provider_name +"</td>"
+            str += "<td>"+ items[i].access_token +"</td>"
+            str += "<td>"+ items[i].describe +"</td>"
+            str += "</tr>"
+          $(".authentication_wrap table.list>tbody").prepend(str)
+        }
+
 
       },
       error: function(xhr){
