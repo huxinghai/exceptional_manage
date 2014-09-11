@@ -30,6 +30,9 @@ var _loadORM = function(app){
           methods: {
             created_at_for: function(str){
               return dateFormat(this.created_at, str);
+            },
+            occurred_at_for: function(str){
+              return dateFormat(this.occurred_at, str);
             }
           },
           validations: {

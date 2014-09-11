@@ -14,10 +14,10 @@
         <tr>
           <td>
             <div>
-              <%=item.title %>
+              <a href='/errors/show/<%=item.id %>'><%=item.title %></a>
             </div>
             <div>
-              <%=item.url %>
+              <a href='/errors/show/<%=item.id %>'><%=item.url %></a>
             </div>
           </td>
           <td><%=item.created_at_for("yyyy-mm-dd h:MM:ss") %></td>

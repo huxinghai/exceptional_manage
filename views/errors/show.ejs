@@ -1,0 +1,47 @@
+<% include ../head %>
+  <% if(error){ %>
+    <p>出错了： <%= error %></p>
+  <% }else{ %>
+  <div>
+    <h4><%=result.title %></h4>
+  </div>
+  <div>
+    错误时间: <%=result.occurred_at_for("yyyy-mm-dd h:MM:ss") %>
+  </div>  
+  <div>
+    <h4>请求信息</h4>  
+    <div>
+      <p>
+      <%=result.header %>
+      </p>
+      <p>
+        remote_ip: <%=result.remote_ip %>
+      </p>
+      <p>
+        <%=result.parameters %>
+      </p>
+      <p>
+        <%=result.session %>
+      </p>
+    </div>
+  </div>
+  <div>
+    <h4>程序环境</h4>
+    <div>
+      <%=result.environment %>
+    </div>
+  </div>
+  <div>
+    <h4>错误详细信息</h4>
+    <div>
+      <%=result.content %>
+    </div>
+  </div>
+
+  <% } %>
+<% include ../foot %>
+<script type='text/javascript'>
+  $(function(){
+    NavBarView.active("home")
+  })
+</script>
